@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::resource('posts',PostController::class)->except('index');
+Route::controller(PostController::class)->group(function(){
+    Route::get('/posts/index/{status}','index')->name('posts.index');
 });
