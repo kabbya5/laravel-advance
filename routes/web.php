@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CacheController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/cache', [CacheController::class,'cache']);
+Route::get('/cache/forget', [CacheController::class,'cacheForget']);
+
+Route::controller(PostController::class)->group(function(){
+    Route::get('/users', 'index');
+});
+
+// 6379
