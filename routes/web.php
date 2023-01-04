@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\UserProcessedEvent;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/event', function (){
+    $user = User::latest()->first();
+    event(new UserProcessedEvent($user));
+    dd('success');
 });
