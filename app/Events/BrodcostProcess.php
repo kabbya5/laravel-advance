@@ -10,15 +10,15 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UserProcessedEvent implements ShouldBroadcast
+class BrodcostProcess implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $last_user;
+    public $message;
 
-    public function __construct($last_user)
+    public function __construct($message)
     {
-        $this->last_user = $last_user;
+        $this->message = $message;
     }
 
     /**
@@ -28,6 +28,10 @@ class UserProcessedEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new Channel('message');
+    }
+
+    public function broadcastAs(){
+        return 'message';
     }
 }
