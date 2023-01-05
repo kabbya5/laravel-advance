@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/check-role/{role}', function ($role){
+    return response()->json($role);
+})->middleware('role');
+
+Route::get('/user/role/', function(Request $request){
+    return "Role is " .$request->role;
+    // $_GET['role'];
+});
+
+Route::get('/terminate', function (){
+    return 'test';
+})->middleware('terminate');
+
+
