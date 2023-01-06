@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/search',function(){
+    $products = Product::search('accusamus')->get();
+
+    foreach($products as $product){
+        echo $prdouct->title ."<br>;
+        echo $product->body->str_limit
+    }
 });
 
 Auth::routes();
