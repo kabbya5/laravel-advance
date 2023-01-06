@@ -22,8 +22,8 @@ Route::get('/search',function(){
     $products = Product::search('accusamus')->get();
 
     foreach($products as $product){
-        echo $prdouct->title ."<br>;
-        echo $product->body->str_limit
+        echo "<pre> $product->title </pre>";
+        echo "<pre>". substr($product->body,0,100).'...'."</pre>";
     }
 });
 
