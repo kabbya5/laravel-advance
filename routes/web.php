@@ -15,6 +15,7 @@ Route::get('/', function () {
 Route::get('/event', function (){
     $user = User::latest()->first();
     event(new UserProcessedEvent($user));
+    
     dd('success');
     return back();
 });
@@ -26,3 +27,8 @@ Route::post('/send', function(Request $request){
     event(new BrodcostProcess($message,$title));
     return back();
 })->name('message.send');
+
+Route::get('/test', function () {
+    event(new \App\Events\SendMessage('something'));
+    dd('Event Run Successfully.');
+});
