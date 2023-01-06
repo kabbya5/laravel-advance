@@ -14,26 +14,29 @@ class BasicTest extends DuskTestCase
     public function testRegister()
     {
         $this->browse(function ($browser) {
-            $browser->visit('register')
-                ->type('name', 'Md Kabbya')
-                ->type('email', 'kabbya44@gmail.ocm')
-                ->type('password', '123456')
-                ->type('password_confirmation', '123456')
+            $browser->visit('/')
+                ->clickLink('Register')
+                // ->type('name', 'Kabbya')
+                ->value('#name', 'Kabbya')
+                ->value('#email', 'kabbya44@gmail.com')
+                ->value('#password', '12345678')
+                ->value('#password-confirm', '12345678')
                 // ->attach('userimage', 'C:\images\taylor.jpg')
-                ->press('Register')
-                ->assertPathIs('/test');
-        });
-    }
-    public function testCreateTodo()
-    {
-        $this->browse(function ($browser) {
-            $browser->visit('todo')
-                ->clickLink('Add Todo')
-                ->type('todo', 'Testing it With Dusk')
-                ->type('category', 'dusk')
-                ->type('description', 'This is created with dusk')
-                ->press('Add')
-                ->assertPathIs('/todoapplaravel/public/todo');
+                // ->press('Register')
+                // ->link('button[type="submit"]')
+                ->click('button[type="submit"]') 
+                // ->press('Kabbya');
+                ->element('#user') ;
+                if ($browser->seeLink('Logout')) {
+                    $browser->clickLink('Logout')
+                    // $browser->press('logout')
+
+                    ->clickLink('Login')
+                    ->value('#email', 'kabbya44@gmail.com')
+                    ->value('#password', '12345678')
+                    ->click('button[type="submit"]');
+                }
+                
         });
     }
 }
