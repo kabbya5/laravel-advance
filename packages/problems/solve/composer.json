@@ -1,0 +1,11 @@
+{
+    "name": "problems/solve",
+    "description": "some problems and solution",
+    "authors": [
+        {
+            "name": "kabbya",
+            "email": "kabbya44@gmail.com"
+        }
+    ],
+    "require": {}
+}
