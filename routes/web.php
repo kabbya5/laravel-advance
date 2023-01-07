@@ -1,6 +1,8 @@
 <?php
 
+use App\Mail\SendMail;
 use App\Models\Product;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,16 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/search',function(){
-    $products = Product::search('accusamus')->get();
-
-    foreach($products as $product){
-        echo $prdouct->title ."<br>;
-        echo $product->body->str_limit
-    }
+Route::get('/send', function(){
+    \Mail::to('kabbya44@gmail.com')->send(new SendMail('title','body'));
 });
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
