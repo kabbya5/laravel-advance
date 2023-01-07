@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Product;
+use App\Models\User;
+use App\Notifications\TestNotifiaction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,15 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/search',function(){
-    $products = Product::search('accusamus')->get();
-
-    foreach($products as $product){
-        echo $prdouct->title ."<br>;
-        echo $product->body->str_limit
-    }
+Route::get('/test-notifiction', function(){
+    $product = Product::latest()->first();
+    User::all()->notify(new TestNotifiaction());
 });
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
