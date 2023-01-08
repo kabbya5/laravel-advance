@@ -18,14 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/search',function(){
-    $products = Product::search('accusamus')->get();
-
-    foreach($products as $product){
-        echo $prdouct->title ."<br>;
-        echo $product->body->str_limit
-    }
+Route::get('/accessors', function (){
+    $products = Product::latest()->limit(10)->get();
+    return view('mutators',compact('products'));
 });
+
 
 Auth::routes();
 
