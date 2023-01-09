@@ -35,16 +35,16 @@ class Product extends Model
     //     return str
     // }
 
-    protected function firstChar($value):Attribute
-    {
-        return Attribute::make(
-            get: fn($value) => ucfirst($value),
-        );
-    }
+    // protected function firstChar($value):Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn($value) => ucfirst($value),
+    //     );
+    // }
     // protected function getFirstChar($value)
     // {
     //     return 
     // }
 
-    // already do many time to get date and set some value
+    // already do sometime to get date and set some value
 }
