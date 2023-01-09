@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\Product;
+use App\Exceptions\ProductNotFoundException;
+use App\Services\ProductService;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,14 +19,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/search',function(){
-    $products = Product::search('accusamus')->get();
+Route::get('/product/{slug}', function ($slug){
+  //  try{
+  //    $product = Product::where('slug', $slug)->firstOrFail();
+  //  }
+  //  catch(ProductNotFoundException $exception){
+  //     return view('errors.404',[ $exception->getMessage()]);
+  //  }
+  try{
+    $product = (new ProductService())->findByProduct($slug);
+  }
+  catch(ProductNotFoundException $e){
+    return view('errors.404',['error' => $e->getMessage()]);
+  }
+   return 'Success';
 
-    foreach($products as $product){
-        echo $prdouct->title ."<br>;
-        echo $product->body->str_limit
-    }
+    
 });
+
 
 Auth::routes();
 
