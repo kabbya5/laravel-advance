@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Product;
+use App\Http\Controllers\Auth\SocialLoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,15 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/search',function(){
-    $products = Product::search('accusamus')->get();
-
-    foreach($products as $product){
-        echo $prdouct->title ."<br>;
-        echo $product->body->str_limit
-    }
-});
-
+Route::get('/social-login/{provider}/callback',[SocialLoginController::class,'providerCallback']);
+Route::get('/social-auth/{provider}',[SocialLoginController::class,'redirectToProvider'])->name('social.redirect');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

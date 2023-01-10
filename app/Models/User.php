@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Product;
+use App\Models\SocialAccount;
 
 class User extends Authenticatable
 {
@@ -45,5 +46,9 @@ class User extends Authenticatable
 
     public function products(){
         return $this->hasMany(Product::class);
+    }
+
+    public function socialAccounts(){
+        return $this->hasMany(SocialAccount::class);
     }
 }

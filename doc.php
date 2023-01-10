@@ -1,5 +1,3 @@
-<!-- https://laracasts.com/series/whats-new-in-laravel-9/episodes/8 -->
-<!-- https://www.positronx.io/laravel-scout-full-text-search-with-algolia-tutorial/ -->
-<!-- https://laravel.com/docs/9.x/scout -->
-<!-- https://www.codesolutionstuff.com/laravel-full-text-search-with-scout/ -->
-<!-- https://laravel-news.com/getting-started-laravel-scout-meilisearch -->
+<!-- https://laracasts.com/discuss/channels/laravel/why-my-social-media-login-not-working-on-live-server -->
+<!-- https://techvblogs.com/blog/social-login-laravel-socialite -->
+<!-- https://stackoverflow.com/questions/39800216/working-with-facebook-login-from-localhost -->

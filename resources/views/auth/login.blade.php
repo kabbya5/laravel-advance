@@ -64,6 +64,15 @@
                                 @endif
                             </div>
                         </div>
+
+                        <h5 class="text-center">Or</h5>
+
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <a href="{{ route('social.redirect','facebook') }}" class="btn btn-primary">Login with Facebook</a>
+                                <a href="{{ route('social.redirect','github') }}" class="btn btn-success">Login with Github</a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
