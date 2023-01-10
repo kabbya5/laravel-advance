@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\TestEvent;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -18,14 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/search',function(){
-    $products = Product::search('accusamus')->get();
-
-    foreach($products as $product){
-        echo $prdouct->title ."<br>;
-        echo $product->body->str_limit
-    }
+Route::get('/test-event',function (){
+    event(new TestEvent('test broadcasting'));
+    return 'success';
 });
+
 
 Auth::routes();
 
