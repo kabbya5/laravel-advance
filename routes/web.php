@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Product;
+use App\Repositories\TestProvider;
+use App\Services\DigitalOcanService;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,15 +20,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/search',function(){
-    $products = Product::search('accusamus')->get();
-
-    foreach($products as $product){
-        echo $prdouct->title ."<br>;
-        echo $product->body->str_limit
-    }
+Route::get('/database', function(DigitalOcanService $ocan){
+    dd($ocan->details());
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/test/provider',function(TestProvider $provider){
+    $details = $provider->test_service_providers();
+    dd($details);
+});
