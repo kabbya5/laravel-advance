@@ -1,32 +1,29 @@
 <?php
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use Illuminate\Database\Eloquent\RelationNotFoundException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/search',function(){
-    $products = Product::search('accusamus')->get();
-
-    foreach($products as $product){
-        echo $prdouct->title ."<br>;
-        echo $product->body->str_limit
-    }
-});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/exception/handeling', function(){
+    try{
+        $user = User::where('email', 'admm@gmail.com')->firstOrFail();
+        $user->load('product');
+        return $user;
+        
+    }
+    catch(\Exception $e){
+        dd(get_class($e));
+        return view('exception');
+    }
+});
