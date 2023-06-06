@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/scout2', function(){
+    return view('search');
+});
+
+Route::get('/scout/search', function(Request $request){
+    $products = Product::search($request->search)->get();
+    return view('result',compact('products'));
+})->name('scout.search');

@@ -16,14 +16,9 @@ class Product extends Model
     public function seller(){
         return $this->belongsTo(User::class,'seller');
     }
-    public function searchableAs()
-    {
-        return 'product_index';
-    }  
 
     public function toSearchableArray()
-    {
-        
+    {     
         return [
             'title' => $this->title,
             'body' => $this->body,
