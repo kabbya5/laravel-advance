@@ -29,4 +29,9 @@ class Product extends Model
             'body' => $this->body,
         ];
     }
+
+    public function setTitleAttribute($value){
+        $this->attributes['title'] = $value;
+        $this->attributes['slug'] = $value;
+    }
 }
