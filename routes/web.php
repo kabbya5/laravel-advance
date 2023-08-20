@@ -40,3 +40,9 @@ Route::controller(ProductController::class)->group(function(){
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/weather', function (){
+    $weatherService = app('weather');
+    $weather = $weatherService->getCurrentWeather('New York');
+    return $weather;
+});
